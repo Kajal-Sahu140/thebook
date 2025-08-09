@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\RatingController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ReturnController;
 use App\Http\Controllers\Admin\PlanController;
+
+use App\Http\Controllers\Admin\whatsupController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\LibraryController;
 use App\Http\Controllers\Admin\OrderController;
@@ -142,6 +144,16 @@ Route::post('/payment/status', 'checkPaymentStatus');
              Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
              Route::get('/logout', 'signOut')->name('admin.signOut');
              });
+
+
+
+ Route::controller(whatsupController::class)->group(function () {
+             Route::get('/send-multiple', 'sendMultipleWhatsget')->name('admin.sendMultipleWhatsget');
+             Route::post('/send-multiple-whatsapp', 'sendMultipleWhatsApp')->name('admin.sendMultipleWhatsApp');
+             });
+
+
+
              ////////////////////////ProfileController ///////////////////
              Route::controller(ProfileController::class)->group(function () {
              Route::get('/profiles', 'index')->name('admin.profiles');
