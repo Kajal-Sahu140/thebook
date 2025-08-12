@@ -6,23 +6,14 @@
 
     <form action="{{ route('admin.whatsapp.send') }}" method="POST">
         @csrf
-
         <div class="mb-3">
             <label for="users">Phone Numbers (comma-separated)</label>
-            <textarea name="users" id="users" class="form-control" rows="3"
-                placeholder="e.g. 911234567890, 919876543210"></textarea>
+            <textarea name="users" id="users" class="form-control" rows="3" placeholder="e.g. 911234567890, 919876543210"></textarea>
         </div>
 
         <div class="mb-3">
-            <label for="template_id">Select Template</label>
-            <select name="template_id" id="template_id" class="form-control">
-                <option value="">-- Select Template --</option>
-                @foreach($templates as $template)
-                    <option value="{{ $template->id }}">
-                        {{ Str::limit($template->description, 50) }}
-                    </option>
-                @endforeach
-            </select>
+            <label for="message">Message</label>
+            <textarea name="message" id="message" class="form-control" rows="3" placeholder="Type your message"></textarea>
         </div>
 
         <button type="submit" class="btn btn-success">Generate WhatsApp Links</button>

@@ -20,32 +20,60 @@ class whatsupController extends Controller
     return view('admin.whatsup.index', compact('templates'));
 }
 
-public function sendMultipleWhatsApp(Request $request)
-{
-    $request->validate([
-        'template_id' => 'required|integer|exists:templates,id',
-        'users' => 'required|string'
-    ]);
 
-    // Get template description from DB
-    $template = Template::findOrFail($request->template_id);
-    $message = strip_tags($template->description);
-    // Convert comma-separated numbers to array
-    $userList = explode(',', $request->users);
-    $waLinks = [];
+ public function sendMultipleWhatsApp(Request $request)
+    {
+        $request->validate([
+            'message' => 'required|string',
+            'users' => 'required|string'
+        ]);
 
-    foreach ($userList as $phone) {
-        $cleanPhone = preg_replace('/\D/', '', $phone); // remove non-digits
-        if ($cleanPhone) {
-            $waLinks[] = "https://wa.me/{$cleanPhone}?text=" . urlencode($message);
+        $message = $request->input('message');
+        $usersRaw = $request->input('users'); // comma-separated numbers
+
+        // Convert to array & clean phone numbers
+        $userList = explode(',', $usersRaw);
+        $waLinks = [];
+
+        foreach ($userList as $phone) {
+            $cleanPhone = preg_replace('/\D/', '', $phone); // remove non-digits
+            if ($cleanPhone) {
+                $waLinks[] = "https://wa.me/{$cleanPhone}?text=" . urlencode($message);
+            }
         }
+
+        return view('admin.whatsup.index', compact('waLinks'));
     }
 
-    return view('admin.whatsup.index', [
-        'waLinks' => $waLinks,
-        'templates' => Template::all()
-    ]);
-}
+
+
+
+// public function sendMultipleWhatsApp(Request $request)
+// {
+//     $request->validate([
+//         'template_id' => 'required|integer|exists:templates,id',
+//         'users' => 'required|string'
+//     ]);
+
+//     // Get template description from DB
+//     $template = Template::findOrFail($request->template_id);
+//     $message = strip_tags($template->description);
+//     // Convert comma-separated numbers to array
+//     $userList = explode(',', $request->users);
+//     $waLinks = [];
+
+//     foreach ($userList as $phone) {
+//         $cleanPhone = preg_replace('/\D/', '', $phone); // remove non-digits
+//         if ($cleanPhone) {
+//             $waLinks[] = "https://wa.me/{$cleanPhone}?text=" . urlencode($message);
+//         }
+//     }
+
+//     return view('admin.whatsup.index', [
+//         'waLinks' => $waLinks,
+//         'templates' => Template::all()
+//     ]);
+// }
 
 
  public function template()

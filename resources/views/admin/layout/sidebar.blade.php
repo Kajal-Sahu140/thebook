@@ -87,6 +87,13 @@ function isActive($slug) {
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ isActive('admin.sendMultipleWhatsget') }}">
+                    <a class="sidebar-link" href="{{ route('admin.sendMultipleWhatsget') }}">
+                        <i class="align-middle" data-feather="users"></i>
+                        <span class="align-middle">Whatsup message</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item {{ isActive('admin.brand') }}">
                     <a class="sidebar-link" href="{{ route('admin.brand') }}">
                         <i class="align-middle" data-feather="briefcase"></i>
