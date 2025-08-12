@@ -8,13 +8,18 @@
         @csrf
         <div class="mb-3">
             <label for="users">Phone Numbers (comma-separated)</label>
-            <textarea name="users" id="users" class="form-control" rows="3" placeholder="e.g. 911234567890, 919876543210"></textarea>
+            <textarea name="users" id="users" class="form-control" rows="3"
+                placeholder="e.g. 911234567890, 919876543210"></textarea>
         </div>
 
-        <div class="mb-3">
-            <label for="message">Message</label>
-            <textarea name="message" id="message" class="form-control" rows="3" placeholder="Type your message"></textarea>
-        </div>
+        {{-- Hidden field for your fixed marketing message --}}
+        <input type="hidden" name="message" value="Hi, I’m Pankaj from THEBOOKDOOR.
+We run a book rental service where students can get high-quality books—novels, exam prep, self-help—without buying them.
+We’re now partnering with libraries and coaching centers like yours to offer a mini-library inside your space, branded in your name, at no cost to you.
+You earn every time a student joins our reading plan — and we manage the books, delivery, and tracking.
+I’d love to set up a small reading zone for you, or send you a proposal. Can we talk more about it this week?
+
+Image: https://thebookdoor.in/storage/app/public/assets/website/fav.svg">
 
         <button type="submit" class="btn btn-success">Generate WhatsApp Links</button>
     </form>
