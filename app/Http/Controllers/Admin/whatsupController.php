@@ -29,8 +29,7 @@ public function sendMultipleWhatsApp(Request $request)
 
     // Get template description from DB
     $template = Template::findOrFail($request->template_id);
-    $message = $template->description;
-
+    $message = strip_tags($template->description);
     // Convert comma-separated numbers to array
     $userList = explode(',', $request->users);
     $waLinks = [];
@@ -61,12 +60,16 @@ public function sendMultipleWhatsApp(Request $request)
         ]);
 
         $template = new Template();
-        $template->description = $request->description;
+        $template->description = strip_tags($request->description);
         $template->save();
 
         return redirect()->back()->with('success', 'Template added successfully');
     }
 
 
+    public function edit(Request $request){
+
+         $template =  Template::where('id',$request->id)->first();
+    }
 
 }
