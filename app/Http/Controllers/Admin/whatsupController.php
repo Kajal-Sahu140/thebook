@@ -12,30 +12,34 @@ use Illuminate\Support\Facades\Storage;
 class whatsupController extends Controller
 {
 
-
-     public function sendMultipleWhatsget(Request $request){
-
- return view('admin.whatsup.index');
-     }
-public function sendMultipleWhatsApp(Request $request)
-{
-    $message = $request->input('message');
-    $usersRaw = $request->input('users'); // comma-separated string
-
-    // Convert to array
-    $userList = explode(',', $usersRaw);
-    $waLinks = [];
-
-    foreach ($userList as $phone) {
-        $cleanPhone = preg_replace('/\D/', '', $phone); // remove non-digits
-        if ($cleanPhone) {
-            $waLinks[] = 'https://wa.me/' . $cleanPhone . '?text=' . urlencode($message);
-        }
+  public function index()
+    {
+        return view('admin.whatsup.index');
     }
 
-    return view('admin.whatsup.index', compact('waLinks'));
-}
+    public function sendMultipleWhatsApp(Request $request)
+    {
+        $request->validate([
+            'message' => 'required|string',
+            'users' => 'required|string'
+        ]);
 
+        $message = $request->input('message');
+        $usersRaw = $request->input('users'); // comma-separated numbers
+
+        // Convert to array & clean phone numbers
+        $userList = explode(',', $usersRaw);
+        $waLinks = [];
+
+        foreach ($userList as $phone) {
+            $cleanPhone = preg_replace('/\D/', '', $phone); // remove non-digits
+            if ($cleanPhone) {
+                $waLinks[] = "https://wa.me/{$cleanPhone}?text=" . urlencode($message);
+            }
+        }
+
+        return view('admin.whatsup.index', compact('waLinks'));
+    }
 
 
 }
