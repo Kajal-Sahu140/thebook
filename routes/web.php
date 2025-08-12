@@ -149,7 +149,7 @@ Route::post('/payment/status', 'checkPaymentStatus');
 
  Route::controller(whatsupController::class)->group(function () {
              Route::get('/send-multiple', 'index')->name('admin.sendMultipleWhatsget');
-             Route::post('/send-multiple-whatsapp', 'sendMultipleWhatsApp')->name('admin.sendMultipleWhatsApp');
+             Route::post('/send-multiple-whatsapp', 'sendMultipleWhatsApp')->name('admin.whatsapp.send');
              });
 
 
