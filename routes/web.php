@@ -178,6 +178,7 @@ Route::post('/payment/status', 'checkPaymentStatus');
              
              Route::get('/users/wallet/{id}', 'editwallet')->name('admin.users.editwallet'); 
             Route::put('/users/add/wallet/{id}', 'addwallet')->name('admin.users.addwallet'); 
+            Route::get('/users/wallet-history/{id}', 'walletHistory')->name('admin.users.walletHistory'); 
          
          
          

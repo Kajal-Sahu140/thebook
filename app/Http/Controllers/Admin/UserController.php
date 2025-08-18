@@ -117,6 +117,16 @@ public function addwallet(Request $request)
         ->with('success', 'Wallet amount added successfully!');
 }
 
+public function walletHistory(Request $request)
+{
+   $histories = Wallethistory::where('wallet_id', $request->id)
+        ->with('user')
+        ->latest()
+        ->paginate(10);
+
+    return view('admin.customer.wallethistory', compact('histories'));
+}
+
 
 
 

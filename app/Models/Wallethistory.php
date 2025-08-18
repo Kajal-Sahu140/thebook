@@ -11,8 +11,13 @@ class Wallethistory extends Model
 
     protected $table = 'wallet_historey'; // Assuming your sizes table is named 'sizes'
 
-    protected $fillable = ['wallet_id','type','transaction_type']; // Adjust columns based on your table structure
+    protected $fillable = ['wallet_id','type','transaction_type','amount']; // Adjust columns based on your table structure
 
     // Relationship with ProductVariant
+
+      public function user()
+    {
+        return $this->belongsTo(User::class, 'wallet_id');
+    }
  
 }

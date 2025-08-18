@@ -99,6 +99,8 @@
                                     <a href="{{ route('admin.users.view', base64_encode($user->id)) }}" class="btn btn-info btn-sm">View</a>
                                     <a href="{{ route('admin.users.edit', base64_encode($user->id)) }}" class="btn btn-warning btn-sm">Edit</a>
                                      <a href="{{ route('admin.users.editwallet', $user->id) }}" class="btn btn-warning btn-sm">wallet</a>
+
+                                     <a href="{{ route('admin.users.walletHistory', $user->id) }}" class="btn btn-warning btn-sm">wallet history</a>
                                     <form action="{{ route('admin.users.destory', base64_encode($user->id)) }}" method="POST" style="display:inline-block;" class="delete-form">
                                         @csrf
                                         @method('DELETE')
