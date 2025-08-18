@@ -83,6 +83,50 @@ public function update(Request $request, $id)
     }
 }
 
+
+public function editwallet(Request $request){
+
+$wallet = User::where('id',$request->id)->first();
+  return view('admin.customer.wallet', compact('wallet'));
+}
+
+
+
+
+
+public function addwallet(Request $request){
+
+$wallet = User::where('id',$request->id)->first();
+$wallet->wallet = $request->wallet;
+$wallet->save();
+
+ return redirect()->route('admin.wallet')->with('success', 'User wallet amount successfully!');
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////////////////
 public function destroy($id)
 {

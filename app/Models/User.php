@@ -38,7 +38,8 @@ class User extends Authenticatable
         'device_type',
         'deleted_at',
         'lang',
-          'password'
+          'password',
+          'wallet'
     ];
 
     /**

@@ -174,8 +174,14 @@ Route::post('/payment/status', 'checkPaymentStatus');
              Route::get('/users/view/{id}', 'view')->name('admin.users.view');
              Route::get('/users/edit/{id}', 'edit')->name('admin.users.edit');
              Route::delete('/users/destroy/{id}', 'destroy')->name('admin.users.destory'); 
-             Route::put('/users/update/{id}', 'update')->name('admin.users.update');      
-             });
+             Route::put('/users/update/{id}', 'update')->name('admin.users.update');
+             
+             Route::get('/users/wallet/{id}', 'editwallet')->name('admin.users.editwallet'); 
+            Route::post('/users/add/wallet/{id}', 'addwallet')->name('admin.users.addwallet'); 
+         
+         
+         
+            });
              //////////////////////////////////////////////////////////////////
              Route::controller(PageController::class)->group(function () {
              Route::get('pages/{slug}', 'edit')->name('admin.pages.edit');
