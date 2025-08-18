@@ -100,7 +100,7 @@ $wallet = User::where('id',$request->id)->first();
 $wallet->wallet = $request->wallet;
 $wallet->save();
 
- return redirect()->route('admin.wallet')->with('success', 'User wallet amount successfully!');
+ return redirect()->route('admin.users')->with('success', 'User wallet amount successfully!');
 
 
 }
