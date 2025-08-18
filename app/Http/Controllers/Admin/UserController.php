@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Wallethistory;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator; // Import the validator
 class UserController extends Controller
@@ -94,16 +95,32 @@ $wallet = User::where('id',$request->id)->first();
 
 
 
-public function addwallet(Request $request){
+public function addwallet(Request $request)
+{
+    $request->validate([
+        'id' => 'required|exists:users,id',
+        'wallet' => 'required|numeric|min:1'
+    ]);
 
-$wallet = User::where('id',$request->id)->first();
-$wallet->wallet = $request->wallet;
-$wallet->save();
+    // Find user
+    $user = User::findOrFail($request->id);
 
- return redirect()->route('admin.users')->with('success', 'User wallet amount successfully!');
+    // Increase wallet balance
+    $user->wallet += $request->wallet;
+    $user->save();
 
+    // Save wallet history
+    Wallethistory::create([
+        'wallet_id'        => $user->id,
+        'type'             => 'credit', // since we're adding
+        'transaction_type' => 'add_to_wallet',
+        'amount'           => $request->wallet,
+    ]);
 
+    return redirect()->route('admin.users')
+        ->with('success', 'Wallet amount added successfully!');
 }
+
 
 
 
