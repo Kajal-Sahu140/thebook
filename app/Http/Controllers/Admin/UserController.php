@@ -97,13 +97,9 @@ $wallet = User::where('id',$request->id)->first();
 
 public function addwallet(Request $request)
 {
-    $request->validate([
-        'id' => 'required|exists:users,id',
-        'wallet' => 'required|numeric|min:1'
-    ]);
-
+    
     // Find user
-    $user = User::findOrFail($request->id);
+    $user = User::where('id',$request->id)->first();
 
     // Increase wallet balance
     $user->wallet += $request->wallet;
