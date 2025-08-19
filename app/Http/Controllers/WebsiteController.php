@@ -1436,11 +1436,27 @@ public function myprofileupdate(Request $request)
     }
 }
 //////////////////////////////////////////////
+// public function Blog(Request $request)
+// {
+//     $blog = Blog::where('status','active')->get();
+//     return view('website.blog',compact('blog'));
+// }
+
 public function Blog(Request $request)
 {
-    $blog = Blog::where('status','active')->get();
-    return view('website.blog',compact('blog'));
+    // Load only 6 blogs at a time
+    $blog = Blog::where('status', 'active')
+                ->latest()
+                ->paginate(6);
+
+    if ($request->ajax()) {
+        // Return only the blog items when AJAX is used
+        return view('website.partials.blog_list', compact('blog'))->render();
+    }
+
+    return view('website.blog', compact('blog'));
 }
+
 public function blogview($id)
 {
     try {

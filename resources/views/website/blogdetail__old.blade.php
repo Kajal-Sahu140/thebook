@@ -240,7 +240,8 @@ body {
                   @endif
                 </h4>
                   <a href="{{ route('website.blogdetail', base64_encode($related->id)) }}">{{__('messages.readmore')}}</a>
-               </div>
+              
+                </div>
             </div>
             @endforeach
          </div>

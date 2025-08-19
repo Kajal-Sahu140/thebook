@@ -158,7 +158,9 @@ body {
     }
 }
 </style>
- <?php $currentLang = app()->getLocale(); ?>
+
+<?php $currentLang = app()->getLocale(); ?>
+
 <div class="site-bg">
    <!-- Inner Page Title Section -->
    <section class="inner-page-title-section section-padding">
@@ -170,48 +172,26 @@ body {
          </ul>
       </div>
    </section>
+
+   <!-- Blog Page -->
    <section class="blog-page section-padding">
       <div class="container">
          <h2>{{__('messages.blogpost')}}</h2>
-         <div class="blog-list">
-            @if($blog && $blog->count())
-               @foreach($blog as $blogs)
-               <div class="blog-box">
-                  <!-- Blog Image -->
-                  <div class="blog-image">
-                     <img src="{{ $blogs->image }}" alt="{{ $blogs->title }}" loading="lazy">
-                  </div>
-                  <!-- Blog Content -->
-                  <div class="blog-content">
-                     <h3>
-                      @if($currentLang == 'en')  
-                     {{ $blogs->title }}
-                     @elseif($currentLang == 'ar')
-                     {{ $blogs->title_ar }}
-                     @elseif($currentLang == 'cku')
-                     {{ $blogs->title_cku }}
-                     @endif
-                    </h3>
-                     <p class="blog-date">{{ $blogs->created_at->format('F d, Y') }}</p>
-                     <p>
-                     @if($currentLang == 'en')   
-                     {!! Str::limit(strip_tags($blogs->description), 150) !!}
-                     @elseif($currentLang == 'ar')
-                     {!! Str::limit(strip_tags($blogs->description_ar), 150) !!}
-                     @elseif($currentLang == 'cku')
-                     {!! Str::limit(strip_tags($blogs->description_cku), 150) !!}
-                     @endif
-                    </p>
-                     <a href="{{route('website.blogdetail',base64_encode($blogs->id))}}" class="btn btn-info">{{__('messages.readmore')}}</a>
-                  </div>
-               </div>
-               @endforeach
-            @else
-               <div class="blog-box" style="text-align: center; padding: 20px;">
-                  <h3>No Blog Posts Found</h3>
-               </div>
-            @endif
+
+         <!-- Blog List -->
+         <div class="blog-list" id="blog-list">
+            @include('website.partials.blog_list')
          </div>
+
+         <!-- Load More Button -->
+         @if($blog->hasMorePages())
+            <div class="text-center mt-4">
+               <button id="load-more" class="btn btn-primary" data-page="2">
+                  {{ __('messages.loadmore') }}
+               </button>
+            </div>
+         @endif
+
       </div>
    </section>
 </div>
