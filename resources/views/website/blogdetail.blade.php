@@ -110,6 +110,10 @@ body {
     
     <!-- Main Featured Blog -->
     <div class="main-blog">
+         @if($blog->image)
+        <img src="{{ $blog->image }}" alt="{{ $blog->title }}" 
+             style="width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
+    @endif
         <h1>
             @if($currentLang == 'en')   
                 {{ $blog->title }}
