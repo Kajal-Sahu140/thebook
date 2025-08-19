@@ -126,45 +126,46 @@ body {
             {{ $blog->author ?? 'Admin' }} • {{ $blog->created_at->format('F d, Y') }}
         </p>
         
-        <p>
+       <p>
             @if($currentLang == 'en')   
-                {!! Str::limit(strip_tags($blog->description), 250) !!}
+                {!! $blog->description !!}
             @elseif($currentLang == 'ar')
-                {!! Str::limit(strip_tags($blog->description_ar), 250) !!}
+                {!! $blog->description_ar !!}
             @elseif($currentLang == 'cku')
-                {!! Str::limit(strip_tags($blog->description_cku), 250) !!}
+                {!! $blog->description_cku !!}
             @else
-                {!! Str::limit(strip_tags($blog->description), 250) !!}
+                {!! $blog->description !!}
             @endif
         </p>
+
         
-        <a href="{{ route('website.blogdetail', base64_encode($blog->id)) }}">
-            {{ __('messages.readmore') }} →
-        </a>
+     
     </div>
 
     <!-- Sidebar Blogs -->
-    <div class="sidebar">
-        @foreach($relatedblog as $related)
-        <div class="sidebar-card">
-            <img src="{{ $related->image }}" alt="{{ $related->title }}">
-            <div class="sidebar-info">
-                <h4>
-                    @if($currentLang == 'en')   
-                        {{ $related->title }}
-                    @elseif($currentLang == 'ar')
-                        {{ $related->title_ar }}
-                    @elseif($currentLang == 'cku')
-                        {{ $related->title_cku }}
-                    @else
-                        {{ $related->title }}
-                    @endif
-                </h4>
-                <p>{{ $related->author ?? 'Guest' }} • {{ $related->created_at->format('h:i A') }}</p>
-            </div>
+   <!-- Sidebar Blogs -->
+<div class="sidebar">
+    @foreach($relatedblog as $related)
+    <a href="{{ route('website.blogdetail', base64_encode($related->id)) }}" class="sidebar-card" style="text-decoration:none;">
+        <img src="{{ $related->image }}" alt="{{ $related->title }}">
+        <div class="sidebar-info">
+            <h4>
+                @if($currentLang == 'en')   
+                    {{ $related->title }}
+                @elseif($currentLang == 'ar')
+                    {{ $related->title_ar }}
+                @elseif($currentLang == 'cku')
+                    {{ $related->title_cku }}
+                @else
+                    {{ $related->title }}
+                @endif
+            </h4>
+            <p>{{ $related->author ?? 'Guest' }} • {{ $related->created_at->format('h:i A') }}</p>
         </div>
-        @endforeach
-    </div>
+    </a>
+    @endforeach
+</div>
+
 
 </div>
 
