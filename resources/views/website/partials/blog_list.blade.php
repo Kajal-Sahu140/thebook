@@ -2,19 +2,23 @@
 <div class="blog-box">
    <!-- Blog Image -->
    <div class="blog-image">
-      <img src="{{ $blogs->image }}" alt="{{ $blogs->title }}" loading="lazy">
+      <a href="{{ route('website.blogdetail', base64_encode($blogs->id)) }}">
+         <img src="{{ $blogs->image }}" alt="{{ $blogs->title }}" loading="lazy">
+      </a>
    </div>
 
    <!-- Blog Content -->
    <div class="blog-content">
       <h3>
-         @if($currentLang == 'en')  
-            {{ $blogs->title }}
-         @elseif($currentLang == 'ar')
-            {{ $blogs->title_ar }}
-         @elseif($currentLang == 'cku')
-            {{ $blogs->title_cku }}
-         @endif
+         <a href="{{ route('website.blogdetail', base64_encode($blogs->id)) }}">
+            @if($currentLang == 'en')  
+               {{ $blogs->title }}
+            @elseif($currentLang == 'ar')
+               {{ $blogs->title_ar }}
+            @elseif($currentLang == 'cku')
+               {{ $blogs->title_cku }}
+            @endif
+         </a>
       </h3>
 
       <p class="blog-date">{{ $blogs->created_at->format('F d, Y') }}</p>
