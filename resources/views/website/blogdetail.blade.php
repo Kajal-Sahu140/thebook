@@ -1,4 +1,5 @@
-@extends('website.master')
+@include('website.header')
+
 
 @section('content')
 <style>
