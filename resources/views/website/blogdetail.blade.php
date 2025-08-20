@@ -114,7 +114,11 @@ body {
         <img src="{{ $blog->image }}" alt="{{ $blog->title }}" 
              style="width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
     @endif
+        <h1>
+         
+                {{ $blog->title }}
        
+        </h1>
         
         <p class="author">
             {{ $blog->author ?? 'Admin' }} • {{ $blog->created_at->format('F d, Y') }}
