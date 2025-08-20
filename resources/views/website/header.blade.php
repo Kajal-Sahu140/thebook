@@ -10,9 +10,9 @@
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="title" content="The Book Door - Your Gateway to Knowledge">
-<meta name="description" content="Explore a wide range of books, plans, and subscriptions at The Book Door. Discover your next great read today!">
-<meta name="keywords" content="books, online library, book subscription, reading plans, The Book Door, ebooks">
+<meta name="title" content="TheBookDoor – Rent Novels & Exam Books | Easy Delivery">
+<meta name="description" content="Rent novels, exam prep & study materials from TheBookDoor. Flexible subscription plans, doorstep delivery & pickup, great savings across India.">
+<meta name="keywords" content="book rental India, rent books online, novel rental, exam book rental, study material rental, book subscription India, book delivery.">
 
     <link rel="icon" href="{{ asset('storage/app/public/assets/website/fav.svg')}}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
