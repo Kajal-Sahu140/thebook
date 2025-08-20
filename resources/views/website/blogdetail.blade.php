@@ -153,7 +153,7 @@ body {
     <a href="{{ route('website.blogdetail', base64_encode($related->id)) }}" class="sidebar-card" style="text-decoration:none;">
         <img src="{{ $related->image }}" alt="{{ $related->title }}">
         <div class="sidebar-info">
-            <h4>
+            {{--<h4>
                 @if($currentLang == 'en')   
                     {{ $related->title }}
                 @elseif($currentLang == 'ar')
@@ -163,7 +163,7 @@ body {
                 @else
                     {{ $related->title }}
                 @endif
-            </h4>
+            </h4>--}}
             <p>{{ $related->author ?? 'Guest' }} • {{ $related->created_at->format('h:i A') }}</p>
         </div>
     </a>
