@@ -510,11 +510,14 @@ $subcategories = Category::where('category_id', $categoryId)->get(['id', "name_{
                 'max_price' => $max_price
             ];
         }
+      
+        
         return response()->json([
             'status' => true,
             'filter' => $filter,
             'products' => $products,
         ], 200);
+ 
     } catch (\Exception $e) {
         Log::error('Error in categorylist API: ' . $e->getMessage());
         return response()->json([
